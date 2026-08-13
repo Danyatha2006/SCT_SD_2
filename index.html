@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#090b16" />
+  <title>NUMERA — Guess The Number</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="background">
+    <div class="orb orb-one"></div><div class="orb orb-two"></div><div class="grid"></div>
+  </div>
+
+  <main class="app-shell">
+    <nav class="topbar">
+      <a class="brand" href="#"><span class="brand-mark">N</span><span>NUMERA</span></a>
+      <div class="nav-actions">
+        <button class="icon-btn" id="soundBtn" aria-label="Toggle sound">♬</button>
+        <button class="icon-btn" id="themeBtn" aria-label="Toggle theme">☼</button>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div class="eyebrow"><span></span> INTERACTIVE NUMBER CHALLENGE</div>
+      <h1>Can you <em>decode</em><br>the hidden number?</h1>
+      <p>Read the clues, trust your instinct, and find the secret number before your attempts run out.</p>
+    </section>
+
+    <section class="game-layout">
+      <div class="game-card glass">
+        <div class="card-top">
+          <div>
+            <p class="label">CURRENT CHALLENGE</p>
+            <h2 id="difficultyLabel">Classic Mode</h2>
+          </div>
+          <div class="live-pill"><i></i> LIVE</div>
+        </div>
+
+        <div class="number-stage">
+          <div class="radar-ring ring-a"></div><div class="radar-ring ring-b"></div>
+          <div class="mystery-number" id="mysteryNumber">?</div>
+          <p id="rangeText">A number between <b>1</b> and <b>100</b></p>
+        </div>
+
+        <div class="clue-box" id="messageBox">
+          <span class="clue-icon">✦</span>
+          <p id="gameMessage">The system has generated a secret number. Make your first move.</p>
+        </div>
+
+        <div class="guess-row">
+          <input id="guessInput" type="number" min="1" max="100" placeholder="Enter your guess" autocomplete="off">
+          <button id="guessBtn" class="primary-btn">Submit <span>→</span></button>
+        </div>
+
+        <div class="range-slider-wrap">
+          <div class="slider-head"><span>Quick select</span><strong id="sliderValue">50</strong></div>
+          <input id="guessSlider" type="range" min="1" max="100" value="50">
+        </div>
+
+        <div class="action-row">
+          <button class="text-btn" id="hintBtn">✦ Use hint <small id="hintCount">2 left</small></button>
+          <button class="text-btn" id="restartBtn">↻ New game</button>
+        </div>
+      </div>
+
+      <aside class="side-panel">
+        <div class="stats-card glass">
+          <div class="section-heading"><span>SESSION DATA</span><small id="gameStatus">IN PROGRESS</small></div>
+          <div class="stats-grid">
+            <div><strong id="attempts">0</strong><span>Attempts</span></div>
+            <div><strong id="bestScore">—</strong><span>Best score</span></div>
+            <div><strong id="streak">0</strong><span>Win streak</span></div>
+          </div>
+          <div class="attempt-meter"><div id="attemptFill"></div></div>
+          <p class="meter-caption" id="attemptCaption">8 attempts available</p>
+        </div>
+
+        <div class="difficulty-card glass">
+          <div class="section-heading"><span>DIFFICULTY</span></div>
+          <div class="difficulty-options" id="difficultyOptions">
+            <button data-mode="easy"><b>Easy</b><small>1–50 · 10 tries</small></button>
+            <button class="active" data-mode="classic"><b>Classic</b><small>1–100 · 8 tries</small></button>
+            <button data-mode="expert"><b>Expert</b><small>1–500 · 7 tries</small></button>
+          </div>
+        </div>
+
+        <div class="history-card glass">
+          <div class="section-heading"><span>RECENT MOVES</span><button id="clearHistory">Clear</button></div>
+          <div class="history-list" id="historyList">
+            <p class="empty-history">Your guesses will appear here.</p>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="how-card glass">
+      <div><span class="mini-label">HOW IT WORKS</span><h2>Simple rules. Smart strategy.</h2></div>
+      <div class="steps">
+        <div><b>01</b><p>Select a challenge level.</p></div>
+        <div><b>02</b><p>Enter or slide to your guess.</p></div>
+        <div><b>03</b><p>Follow the directional clues.</p></div>
+        <div><b>04</b><p>Find the number and build your streak.</p></div>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal-backdrop" id="modalBackdrop">
+    <div class="win-modal glass">
+      <div class="win-burst">✦</div>
+      <p class="eyebrow centered"><span></span> CHALLENGE COMPLETE <span></span></p>
+      <h2 id="modalTitle">Perfect decode.</h2>
+      <p id="modalText">You found the secret number.</p>
+      <div class="final-number" id="finalNumber">42</div>
+      <button id="playAgainBtn" class="primary-btn wide">Play again <span>→</span></button>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <script src="script.js"></script>
+</body>
+</html>
